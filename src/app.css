@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+	@apply text-4xl font-semibold tracking-wide text-secondary md:text-6xl xl:text-7xl;
+}
+
+body {
+	@apply text-lg;
+}
+
+p {
+	@apply text-base md:text-lg xl:text-xl;
+}
+
+.container {
+	/* @apply bg-red-300; */
+}
