@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+
+// =============================================
+// ENUMS definitions
+enum Role {
+  ADMIN
+  USER
+  SUPER_ADMIN
+}
+
+
+
+// =============================================
+// DATA TYPES
+type DrugName {
+  brand String
+  generic String
+}
+
+
+type Count {
+  batches Int?
+  items Int?
+}
+
+type Price {
+  original Int
+  sale Int 
+}
+
+
+// =============================================
+// MODELS
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstName String?
+  lastName String?
+  username String
+  email String @unique
+  password String
+  role Role @default(USER)
+  likes String[] @db.ObjectId
+}
+
+model Drug {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name DrugName
+  indications String[]
+  contraIndications String[]
+  activeIngredients String[]
+  drugItems DrugItem[]
+  manufacturerID String @db.ObjectId
+  manufacturer Manufacturer @relation(fields: [manufacturerID], references: [id])
+  categoryIDs String[] @db.ObjectId
+  categories Category[] @relation(fields: [categoryIDs], references: [id])
+}
+
+
+model DrugItem {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  drug Drug @relation(fields: [drugID], references: [id])
+  drugID String @db.ObjectId
+  imagesURL String[]
+  price Int?
+  quantityInStock Count
+  description String
+  likesCount Int @default(0)
+  discount Int? @default(0)
+  isAvailable Boolean @default(true)
+  dosage String?
+  form String?
+}
+
+
+model Category {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  drugIDs String[] @db.ObjectId
+  drugs Drug[] @relation(fields: [drugIDs], references: [id])
+}
+
+model Manufacturer {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name String
+  country String
+  drugs Drug[]
+}
+
+model Brand {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+  // id String @id @default(auto()) @map("_id") @db.ObjectId

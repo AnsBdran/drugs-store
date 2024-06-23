@@ -2,7 +2,7 @@
 	import { createLinks } from '$lib';
 </script>
 
-<ul class="menu">
+<ul class="menu menu-dropdown menu-dropdown-show menu-horizontal menu-lg">
 	{#each createLinks as link}
 		<li>
 			<a href={`/dashboard/create/${link.href}`}
@@ -11,3 +11,4 @@
 		</li>
 	{/each}
 </ul>
+<slot />

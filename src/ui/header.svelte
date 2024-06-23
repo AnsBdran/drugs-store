@@ -10,7 +10,7 @@
 	});
 </script>
 
-<header class="drawer glass z-10">
+<header class="drawer fixed z-10">
 	<input type="checkbox" class="drawer-toggle" id="my-drawer-3" />
 	<section class="drawer-content flex flex-col">
 		<div class="navbar w-full bg-base-300">
@@ -53,7 +53,14 @@
 		<label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
 		<ul class="menu min-h-full w-80 bg-base-200 p-4">
 			{#each navLinks as navLink}
-				<li><a href={navLink.href}>{navLink.title}</a></li>
+				<li>
+					<a
+						href={navLink.href}
+						on:click={() => {
+							document.getElementById('my-drawer-3').click();
+						}}>{navLink.title}</a
+					>
+				</li>
 			{/each}
 		</ul>
 	</section>

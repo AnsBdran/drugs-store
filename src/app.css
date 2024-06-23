@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 h1 {
-	@apply text-4xl font-semibold tracking-wide text-secondary md:text-6xl xl:text-7xl;
+	/* @apply text-4xl font-semibold tracking-wide text-secondary md:text-6xl xl:text-7xl; */
+	@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+
+h2 {
+	@apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
 }
 
 body {
@@ -11,9 +16,10 @@ body {
 }
 
 p {
-	@apply text-base md:text-lg xl:text-xl;
+	/* @apply text-base md:text-lg xl:text-xl; */
+	@apply leading-7 [&:not(:first-child)]:mt-6;
 }
 
 .container {
-	/* @apply bg-red-300; */
+	/* @apply bg-red-800; */
 }

@@ -1,4 +1,4 @@
-<section class="container bg-red-50/5">
+<section class="container">
 	<h1>Hello sick people</h1>
 	<p>
 		Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa provident earum accusamus

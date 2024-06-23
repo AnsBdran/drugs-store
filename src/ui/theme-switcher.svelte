@@ -9,7 +9,7 @@
 
 <label class="8 btn btn-square btn-ghost swap swap-rotate aspect-square">
 	<!-- this hidden checkbox controls the state -->
-	<input type="checkbox" data-toggle-theme="forest,lofi" />
+	<input type="checkbox" data-toggle-theme="business,wireframe" />
 
 	<!-- sun icon -->
 	<svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
